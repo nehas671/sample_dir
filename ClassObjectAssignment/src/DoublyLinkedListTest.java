@@ -29,10 +29,12 @@ class DoublyLinkedList{
 				 Newnode.previous=tail;
 				 tail=Newnode;
 			   }
+			   
+			 
 			}
 			
 			
-			public  void insert(int data,int index) {
+			public Node insert(int data,int index) {
 				
 				Node Newnode = new Node(data);
 				Node current = head;
@@ -50,8 +52,26 @@ class DoublyLinkedList{
 				    current.previous = Newnode;
 				  
 				 }
+				return current;
 				  
 			}
+			
+			 public Node deleteAtIndex(int index){
+				  
+				    Node current = head;
+				    //remove at the start
+				  
+				    // remove at last
+				   
+				      for(int j = 0; j < index && current.next != null; j++){
+				        current = current.next;
+				      }
+				      current.previous.next = current.next;
+				      current.next.previous = current.previous;
+				     
+				   
+				    return current;
+				  }
 			
 			
 			public void display( ) {
@@ -68,10 +88,33 @@ class DoublyLinkedList{
 					while(current!=null) {
 						System.out.print(current.data+" ");
 						current=current.next;
+						
+						
+					}
+					
+				}
+				
+			}
+			
+				public void count() {
+				
+				Node current=head;
+				
+				if(head==null)
+				{
+					System.out.println("list is empty");
+					return;
+				}
+				
+				else {
+					while(current!=null) {
+						
+						current=current.next;
 						count++;
 						
 					}
-					 System.out.println("number of nodes :"+count);
+					System.out.println("Number of nodes in list:"+count);
+					
 				}
 				
 			}
@@ -92,11 +135,21 @@ public class DoublyLinkedListTest {
 	        d.add(3);  
 	        d.add(4);  
 	        d.add(5);
-	        
+	        System.out.println("elements in list");
+	        d.display();  
+	        System.out.println();
+	        System.out.println("element inserted");
 	        d.insert(25, 3);
-	  
+	        d.display();  
+	        System.out.println();
+	        System.out.println("element deleted");
+	        d.deleteAtIndex(4);
+	        d.display(); 
+	        System.out.println();
+	        d.count();
 	        //Displays the nodes present in the list  
-	       d.display();  
+	      // d.display(); 
+	        
 	      
 	    }  
 
